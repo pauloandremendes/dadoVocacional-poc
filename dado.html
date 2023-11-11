@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocacão SH</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('img/Design\ sem\ nome.png');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            opacity: 0.5; /* Ajuste a opacidade conforme necessário */
+        }
+
+        main {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+
+        #dado-container {
+            perspective: 800px;
+            margin-top: 3cm;
+            margin-bottom: 3cm;
+        }
+
+        #dado {
+            width: 220px;
+            height: 220px;
+            transform-style: preserve-3d;
+            transition: transform 3s ease-in-out;
+        }
+
+        .face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        #face1 { transform: rotateY(0deg) translateZ(110px); }
+        #face2 { transform: rotateY(90deg) translateZ(110px); }
+        #face3 { transform: rotateY(180deg) translateZ(110px); }
+        #face4 { transform: rotateY(-90deg) translateZ(110px); }
+        #face5 { transform: rotateX(90deg) translateZ(110px); }
+        #face6 { transform: rotateX(-90deg) translateZ(110px); }
+        
+        #start-button {
+            padding: 10px;
+            font-size: 20px;
+            width: 150px; /* Ajusta a largura do botão */
+            height: 50px; /* Ajusta a altura do botão */
+            border-radius: 10px;
+            background-color: #800020;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        #start-button:active {
+            transform: scale(0.95);
+            transition: transform 0.2s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="dado-container">
+        <div id="dado">
+            <div class="face" id="face1">Comunidade Aliança</div>
+            <div class="face" id="face2">Comunidade Vida</div>
+            <div class="face" id="face3">Aliança Missionária</div>
+            <div class="face" id="face4">Jovem Missão</div>
+            <div class="face" id="face5">Aliança Externa</div>
+            <div class="face" id="face6">Obra</div>
+        </div>
+    </div>
+
+    <button id="start-button" onclick="iniciarGiro()">Iniciar Giro</button>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/confetti.js/0.1.6/confetti.min.js"></script>
+    <script>
+        function iniciarGiro() {
+            const dado = document.getElementById("dado");
+            const resultado = Math.floor(Math.random() * 6) + 1; // Números de 1 a 6
+            const rotacaoX = Math.floor(Math.random() * 360);
+            const rotacaoY = Math.floor(Math.random() * 360);
+            
+            dado.style.transform = `rotateX(${rotacaoX}deg) rotateY(${rotacaoY}deg)`;
+        
+            setTimeout(() => {
+                confetti();
+            }, 3000);
+        }
+    </script>
+
+</body>
+</html>
